@@ -27,20 +27,6 @@ def obter_dics_informacoes(paginas):
     return lista_dic
 
 
-
-def parse_date(lista):
-    dates = []
-    teste = re.compile('(\d+[-/]\d+[-/]\d+)')
-    for date in lista:
-        date = date.split()
-        if teste.match(date[0]):
-            dates.append(date[0])
-        else:
-            dates.append(' ')
-        
-    return dates
-
-
 def pegar_info_pagina(link):
     r = requests.get(link)
     soup = BeautifulSoup(r.content, "html.parser")
@@ -58,10 +44,10 @@ def salvar_dados_em_excel(lista):
     df.to_excel('urls.xlsx')
     
 
-
 def parse_url(lista_urls):
     urls = ['http://' + url[url.find('Fg1') + 1: url.find('&t')].replace('%2F', '/') for url in lista_urls]
     return urls
+
 
 def parse_date(lista):
     dates = []
