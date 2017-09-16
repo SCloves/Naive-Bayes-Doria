@@ -6,11 +6,12 @@ import pandas as pd
 
 def main():
     df = pd.read_excel('urls.xlsx')
-    urls = df['url'].tolist()
+    #urls = df['url'].tolist()
+    tuplas = [tuple(x) for x in df.to_records(index=False)]
     comentarios = []
     try:
-        for i in range(len(urls)):
-            c = obter_comentarios(urls[i], i)
+        for i in range(len(tuplas)):
+            c = obter_comentarios(tuplas[i], i)
             if c != 0:
                 comentarios += c
 

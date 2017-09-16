@@ -42,7 +42,10 @@ def apertar_botao_mais_comentarios(browser, xpath):
     except (TimeoutException, WebDriverException) as e:
         return 0
 
-def obter_comentarios(url, n):
+def obter_comentarios(tupla, n):
+    data = tupla[0]
+    titulo = tupla[1]
+    url = tupla[2]
     browser = iniciar_google_drive('/home/cloves/Documentos/chromedriver')
     browser.get(url)
     r = apertar_botao_mais_comentarios(
@@ -55,7 +58,7 @@ def obter_comentarios(url, n):
     lista_comentarios = []
     for comentario in get(
             browser, '//p[contains(@class, "glbComentarios-texto-comentario")]'):
-        lista_comentarios.append(comentario.text)
+        lista_comentarios.append((data, titulo, url, comentario.text))
 
     print "================================================================"
     print "========= Comentários da página %d obtidos com sucesso =========" % n
