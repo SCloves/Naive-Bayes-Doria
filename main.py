@@ -12,9 +12,6 @@ def main():
         c = obter_comentarios(urls[i], i)
         comentarios += c
 
-        if i == 3:
-            break
-
     salvar_comentarios(comentarios)
 
 

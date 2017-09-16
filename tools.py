@@ -30,6 +30,7 @@ def iniciar_google_drive(path_do_google_drive):
 
 def apertar_botao_mais_comentarios(browser, xpath):
     # return browser.find_element_by_xpath(xpath).click()
+    browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     n = 0
     try:
         botao = WebDriverWait(browser, 20).until(
