@@ -41,9 +41,7 @@ def apertar_botao_mais_comentarios(browser, xpath):
             botao)  # scrolar até achar elemento botao
         # botao.location_once_scrolled_into_view
         botao.click()
-        print "================================================================"
-        print "= Botão 'Carregar mais comentários' foi clicado com sucesso!!! ="
-        print "================================================================"
+        
     except (TimeoutException, WebDriverException) as e:
         n += 1
         if n == 5:
