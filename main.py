@@ -8,12 +8,14 @@ def main():
     df = pd.read_excel('urls.xlsx')
     urls = df['url'].tolist()
     comentarios = []
-    for i in range(len(urls)):
-        c = obter_comentarios(urls[i], i)
-        comentarios += c
+    try:
+        for i in range(len(urls)):
+            c = obter_comentarios(urls[i], i)
+            comentarios += c
 
-    salvar_comentarios(comentarios)
-
+        salvar_comentarios(comentarios)
+    except:
+        salvar_comentarios(comentarios)
 
 if __name__ == '__main__':
     main()
