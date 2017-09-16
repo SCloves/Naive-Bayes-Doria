@@ -52,11 +52,21 @@ def obter_comentarios(tupla, n):
     r = apertar_botao_mais_comentarios(
         browser, './/button[contains(@class, "glbComentarios-botao-mais")]')
     if r == 0:
-        print "=========================================================================="
-        print "========= Não foi possível capturar os comentários da página %d  =========" % n
-        print "=========================================================================="
-        browser.close()
-        return 0
+        try:
+            lista_comentarios = []
+            for comentario in get(browser, '//p[contains(@class, "glbComentarios-texto-comentario")]'):
+                lista_comentarios.append((data, titulo, url, comentario.text))
+            print "================================================================"
+            print "========= Comentários da página %d obtidos com sucesso =========" % n
+            print "================================================================"
+            browser.close()
+            return lista_comentarios
+        except:
+            print "=========================================================================="
+            print "========= Não foi possível capturar os comentários da página %d  =========" % n
+            print "=========================================================================="
+            browser.close()
+            return 0
     lista_comentarios = []
     for comentario in get(
             browser, '//p[contains(@class, "glbComentarios-texto-comentario")]'):

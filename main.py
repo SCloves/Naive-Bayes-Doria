@@ -10,15 +10,27 @@ def main():
     tuplas = [tuple(x) for x in df.to_records(index=False)]
     comentarios = []
     try:
-        for i in range(len(tuplas)):
+        nao_obteve_comentarios = []
+        for i in range(22, len(tuplas)):
             c = obter_comentarios(tuplas[i], i)
-            if c != 0:
+            if c == 0:
+                nao_obteve_comentarios.append(tuplas[i][2])
+            else:
                 comentarios += c
+
+            if i == 25:
+                break
+
+        arquivo = open('nao_obteve_comentarios.txt', 'w')
+        for item in nao_obteve_comentarios:
+            arquivo.write("%s\n" % item)
+        arquivo.close()
 
         salvar_comentarios(comentarios)
         print "================================================================"
         print "======== Todos os Comentários foram salvos com sucesso ========="
         print "================================================================"
+
     except:
         salvar_comentarios(comentarios)
         print "================================================================"
