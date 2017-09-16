@@ -16,8 +16,14 @@ def main():
                 comentarios += c
 
         salvar_comentarios(comentarios)
+        print "================================================================"
+        print "======== Todos os Comentários foram salvos com sucesso ========="
+        print "================================================================"
     except:
         salvar_comentarios(comentarios)
+        print "================================================================"
+        print "====== Erro! Mas comentários foram salvos até a página %d ======" %(i-1)
+        print "================================================================"
 
 if __name__ == '__main__':
     main()

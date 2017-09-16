@@ -69,8 +69,7 @@ def obter_comentarios(tupla, n):
     return lista_comentarios
 
 
-def salvar_comentarios(lista_comentarios):
-    arquivo = open('comentariosG1.txt', 'w')
-    for item in lista_comentarios:
-        print>>arquivo, item
-    arquivo.close()
+def salvar_comentarios(tuplas):
+    df = pd.DataFrame(tuplas, columns=['data', 'titulo', 'url', 'comentario'])
+    df.to_excel('comentarios', header=True, index=False)
+
