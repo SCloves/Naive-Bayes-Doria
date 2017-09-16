@@ -12,7 +12,7 @@ reload(sys)
 sys.setdefaultencoding('utf-8')  # tornando o encoding utf-8 como padrão
 
 
-def esperar(drive, xpath):
+def get(drive, xpath):
     element = WebDriverWait(drive, 20).until(
         EC.presence_of_all_elements_located((By.XPATH, xpath))
     )
@@ -56,7 +56,7 @@ def obter_comentarios(url, n):
     apertar_botao_mais_comentarios(
         browser, './/button[contains(@class, "glbComentarios-botao-mais")]')
     lista_comentarios = []
-    for comentario in esperar(
+    for comentario in get(
             browser, '//p[contains(@class, "glbComentarios-texto-comentario")]'):
         lista_comentarios.append(comentario.text)
 
