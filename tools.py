@@ -7,6 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, WebDriverException
+import pandas as pd
 
 reload(sys)
 sys.setdefaultencoding('utf-8')  # tornando o encoding utf-8 como padrão
@@ -71,5 +72,5 @@ def obter_comentarios(tupla, n):
 
 def salvar_comentarios(tuplas):
     df = pd.DataFrame(tuplas, columns=['data', 'titulo', 'url', 'comentario'])
-    df.to_excel('comentarios', header=True, index=False)
+    df.to_excel('comentarios.xlsx', header=True, index=False)
 

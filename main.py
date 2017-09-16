@@ -6,7 +6,7 @@ import pandas as pd
 
 def main():
     df = pd.read_excel('urls.xlsx')
-    #urls = df['url'].tolist()
+    df['data'].replace(u' ' ,'None', inplace=True)
     tuplas = [tuple(x) for x in df.to_records(index=False)]
     comentarios = []
     try:
