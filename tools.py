@@ -55,6 +55,7 @@ def obter_comentarios(tupla, n):
         print "=========================================================================="
         print "========= Não foi possível capturar os comentários da página %d  =========" % n
         print "=========================================================================="
+        browser.close()
         return 0
     lista_comentarios = []
     for comentario in get(
