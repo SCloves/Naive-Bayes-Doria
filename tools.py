@@ -36,25 +36,22 @@ def apertar_botao_mais_comentarios(browser, xpath):
         botao = WebDriverWait(browser, 20).until(
             EC.element_to_be_clickable((By.XPATH, xpath))
         )
-        browser.execute_script(
-            "arguments[0].focus();",
-            botao)  # scrolar até achar elemento botao
-        # botao.location_once_scrolled_into_view
+        browser.execute_script("arguments[0].focus();", botao)  # scrolar até achar elemento botao
         botao.click()
-        
+        return 1
     except (TimeoutException, WebDriverException) as e:
-        n += 1
-        if n == 5:
-            print 'Não foi possível apertar o maldito butão!'
-            return None
-        apertar_botao_mais_comentarios(browser, xpath)
-
+        return 0
 
 def obter_comentarios(url, n):
     browser = iniciar_google_drive('/home/cloves/Documentos/chromedriver')
     browser.get(url)
-    apertar_botao_mais_comentarios(
+    r = apertar_botao_mais_comentarios(
         browser, './/button[contains(@class, "glbComentarios-botao-mais")]')
+    if r == 0:
+        print "=========================================================================="
+        print "========= Não foi possível capturar os comentários da página %d  =========" % n
+        print "=========================================================================="
+        return 0
     lista_comentarios = []
     for comentario in get(
             browser, '//p[contains(@class, "glbComentarios-texto-comentario")]'):
@@ -72,6 +69,5 @@ def obter_comentarios(url, n):
 def salvar_comentarios(lista_comentarios):
     arquivo = open('comentariosG1.txt', 'w')
     for item in lista_comentarios:
-        #arquivo.write("%s\n" % item)
         print>>arquivo, item
     arquivo.close()

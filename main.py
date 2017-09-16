@@ -11,7 +11,8 @@ def main():
     try:
         for i in range(len(urls)):
             c = obter_comentarios(urls[i], i)
-            comentarios += c
+            if c != 0:
+                comentarios += c
 
         salvar_comentarios(comentarios)
     except:
